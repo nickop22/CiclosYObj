@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Propiedades en Venta</title>
+    <!-- Enlace a CSS de Bootstrap -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Enlace a FontAwesome para los íconos -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
+</head>
+<body>
+    <div class="container mt-4">
+        <div class="row" id="cardContainer"></div>
+    </div>
+
+    <script>
+        const propiedades_venta = [
+            {
+                nombre: 'casa1',
+                titulo: 'Apartamento de lujo en zona exclusiva',
+                src: 'https://fotos.perfil.com/2018/09/21/trim/950/534/nueva-york-09212018-366965.jpg',
+                descripcion: 'Este apartamento de lujo está ubicado en una exclusiva zona residencial',
+                ubicacion: '123 Luxury Lane, Prestige Suburb, CA 45678',
+                habitaciones: 4,
+                bano: 4,
+                costo: 5000,
+                smoke: false,
+                pets: true
+            }
+            // Puedes agregar más objetos con propiedades aquí
+        ];
+
+        function generateCards() {
+            const container = document.getElementById('cardContainer');
+            for (const propiedad of propiedades_venta) {
+                let smokeText = propiedad.smoke ? 'Permitido fumar' : 'No se permite fumar';
+                let petsText = propiedad.pets ? 'Mascotas permitidas' : 'No se permiten mascotas';
+                let smokeClass = propiedad.smoke ? 'text-success' : 'text-danger';
+                let petsClass = propiedad.pets ? 'text-success' : 'text-danger';
+
+                const cardHTML = `
+                    <div class="col-md-4 mb-4">
+                        <div class="card">
+                            <img src="${propiedad.src}" class="card-img-top" alt="img propiedad venta"/>
+                            <div class="card-body">
+                                <h5 class="card-title">${propiedad.titulo}</h5>
+                                <p class="card-text">${propiedad.descripcion}</p>
+                                <p><i class="fas fa-map-marker-alt"></i> ${propiedad.ubicacion}</p>
+                                <p>
+                                    <i class="fas fa-bed"></i> ${propiedad.habitaciones} Habitaciones |
+                                    <i class="fas fa-bath"></i> ${propiedad.bano} Baños
+                                </p>
+                                <p><i class="fas fa-dollar-sign"></i> $${propiedad.costo}</p>
+                                <p class="${smokeClass}">
+                                    <i class="fas fa-smoking-ban"></i> ${smokeText}
+                                </p>
+                                <p class="${petsClass}">
+                                    <i class="fa-solid fa-ban"></i> ${petsText}
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                `;
+                container.innerHTML += cardHTML;
+            }
+        }
+
+        // Llamar a la función para generar las tarjetas
+        generateCards();
+    </script>
+
+    <!-- Enlaces a JavaScript de Bootstrap y dependencias de jQuery y Popper.js -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
